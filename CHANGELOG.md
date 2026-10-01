@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 — 2026-10-01
+
+- Complete English demo, API documentation, integration examples and screenshots.
+- Chinese/English demo switch with URL selection, remembered preference and browser-language default.
+- Preserve the current image, crop and exported preview when switching languages; translate existing error messages.
+- Automated language selection and desktop/mobile English workflow checks.
+
 ## 0.1.1 — 2026-10-01
 
 - Neutral project name, package identity, styles and standalone demo branding.

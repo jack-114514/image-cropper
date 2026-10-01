@@ -1,6 +1,6 @@
 {
   "name": "image-cropper",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Ready-to-use React image cropping for avatars, covers and responsive website images.",
   "license": "MIT",
   "author": "jack-114514",
@@ -52,7 +52,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "build": "vite build && tsc -p tsconfig.build.json",
     "build:demo": "vite build --config demo/vite.config.ts",
-    "test": "node --experimental-strip-types --test tests/geometry.test.ts",
+    "test": "node --experimental-strip-types --test tests/geometry.test.ts tests/i18n.test.ts",
     "test:e2e": "playwright test",
     "verify:package": "node scripts/verify-package.mjs",
     "check": "npm run typecheck && npm test && npm run build && npm run build:demo",

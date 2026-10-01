@@ -4,7 +4,7 @@
 
 [English](./README.en.md) · [API 与常见问题](./docs/API.md) · [更新日志](./CHANGELOG.md) · [MIT](./LICENSE)
 
-**项目状态：0.1.1，独立源码与可安装版本包。尚未发布到 npm。** 可以直接安装 GitHub Release 中的 tarball，不要求 npm 上存在同名包。
+**项目状态：0.2.0，独立源码与可安装版本包。尚未发布到 npm。** 可以直接安装 GitHub Release 中的 tarball，不要求 npm 上存在同名包。
 
 ![独立裁剪演示](./docs/demo.png)
 
@@ -33,6 +33,8 @@ npm run dev
 
 打开终端提示的本地地址。选择本地图片 → 选择场景 → 调整选框 → 点击“使用此取景” → 下载图片。演示页还可以记住、恢复和下载取景坐标。
 
+右上角可切换中文 / English，并记住语言选择。也可在演示地址后加 `?lang=en` 或 `?lang=zh-CN`；网址参数优先于记住的语言，没有指定时按浏览器语言选择。切换语言会保留当前图片、取景和导出预览。组件单独接入时通过 `locale="en"` 使用英语，组件默认仍为中文。完整英语接入说明见 [English README](./README.en.md) 和 [English API](./docs/API.en.md)。
+
 所有本地图片处理都发生在浏览器内；演示没有上传接口、账户服务或图片分析服务。示例插画随项目提供，不请求外部图片。
 
 ## 接入已有网站
@@ -40,7 +42,7 @@ npm run dev
 在你的网站目录直接安装已构建的版本包：
 
 ```bash
-npm install https://github.com/jack-114514/image-cropper/releases/download/v0.1.1/image-cropper-0.1.1.tgz
+npm install https://github.com/jack-114514/image-cropper/releases/download/v0.2.0/image-cropper-0.2.0.tgz
 ```
 
 或者先构建源码，再安装本地文件。
@@ -56,10 +58,10 @@ npm pack
 在你的网站目录安装生成的文件（替换为实际路径）：
 
 ```bash
-npm install /path/to/image-cropper-0.1.1.tgz
+npm install /path/to/image-cropper-0.2.0.tgz
 ```
 
-Windows 也可以使用带引号的绝对路径：`npm install "C:/path/to/image-cropper-0.1.1.tgz"`。
+Windows 也可以使用带引号的绝对路径：`npm install "C:/path/to/image-cropper-0.2.0.tgz"`。
 
 ```tsx
 'use client';

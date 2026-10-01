@@ -2,11 +2,11 @@
 
 An independent React component for avatar, cover and website background cropping.
 
-[中文](./README.md) · [API (Chinese)](./docs/API.md) · [MIT](./LICENSE)
+[中文](./README.md) · [API and FAQ](./docs/API.en.md) · [Changelog](./CHANGELOG.md) · [MIT](./LICENSE)
 
-Version 0.1.1 provides standalone source and an installable release tarball. It is **not published to npm yet**. It has no dependency on any existing website, backend or database.
+Version 0.2.0 provides standalone source and an installable release tarball. It is **not published to npm yet**. It has no dependency on any existing website, backend or database.
 
-![Standalone cropper demo](./docs/demo.png)
+![English cropper demo](./docs/demo.en.png)
 
 ## Run the demo
 
@@ -21,12 +21,16 @@ npm run dev
 
 The demo supports local uploads, square covers, circular avatars, landscape/portrait backgrounds, free ratios, real image downloads and saved crop coordinates. Local files are processed in the browser; the demo does not upload images. The included sample illustration is original project artwork.
 
+Open the local URL printed in the terminal with `?lang=en` (for example, `http://127.0.0.1:5173/?lang=en`). You can also use the **English / 中文** buttons. The URL parameter takes priority over the saved preference; without either, Chinese browser languages select Chinese and other languages select English. Switching languages preserves your image, crop, saved coordinates and exported preview. `?lang=zh-CN` opens Chinese explicitly.
+
+![English mobile demo](./docs/demo-mobile.en.png)
+
 ## Install into a React website
 
 Install the prebuilt GitHub Release package directly:
 
 ```bash
-npm install https://github.com/jack-114514/image-cropper/releases/download/v0.1.1/image-cropper-0.1.1.tgz
+npm install https://github.com/jack-114514/image-cropper/releases/download/v0.2.0/image-cropper-0.2.0.tgz
 ```
 
 Or build and install from source:
@@ -42,7 +46,7 @@ npm pack
 Then install the resulting tarball in your website project:
 
 ```bash
-npm install /path/to/image-cropper-0.1.1.tgz
+npm install /path/to/image-cropper-0.2.0.tgz
 ```
 
 React 18.2+ and React 19 are supported peers. Vue and plain HTML need a separate integration. The package is ESM and ships TypeScript declarations.
@@ -66,7 +70,77 @@ import 'image-cropper/style.css';
   onError={(error) => console.error(error)} />
 ```
 
-Revoke object URLs when their source file or preview is replaced or unmounted; see the complete lifecycle example in the Chinese README.
+### Complete local file and preview example
+
+This example cleans up object URLs when a file or preview is replaced or the editor unmounts:
+
+```tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+import { ImageCropper } from 'image-cropper';
+import type { CropResult } from 'image-cropper';
+import 'image-cropper/style.css';
+
+export default function AvatarEditor() {
+  const [src, setSrc] = useState('');
+  const [result, setResult] = useState<CropResult | null>(null);
+  const [preview, setPreview] = useState('');
+
+  useEffect(() => () => { if (src) URL.revokeObjectURL(src); }, [src]);
+  useEffect(() => {
+    if (!result) { setPreview(''); return; }
+    const url = URL.createObjectURL(result.blob);
+    setPreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [result]);
+
+  return <>
+    <input type="file" accept="image/jpeg,image/png,image/webp"
+      aria-label="Choose an avatar"
+      onChange={(event) => {
+        const file = event.target.files?.[0];
+        if (file) { setSrc(URL.createObjectURL(file)); setResult(null); }
+        event.target.value = '';
+      }} />
+    {src && <ImageCropper src={src} shape="circle" locale="en"
+      output={{ maxSize: 1024, transparentCircle: true }}
+      onConfirm={setResult} onError={console.error} />}
+    {preview && <img src={preview} alt="New avatar" width={128} height={128} />}
+  </>;
+}
+```
+
+Import the stylesheet once. For Next.js App Router, use a client component; the stylesheet can also be imported in your root layout.
+
+### Keep the original and save only crop coordinates
+
+```tsx
+'use client';
+
+import { useRef } from 'react';
+import { ImageCropper } from 'image-cropper';
+import type { CropSelection, ImageCropperHandle } from 'image-cropper';
+import 'image-cropper/style.css';
+
+export function CoverEditor({ src, saved, onSave }: {
+  src: string;
+  saved?: CropSelection;
+  onSave: (selection: CropSelection) => void;
+}) {
+  const cropper = useRef<ImageCropperHandle>(null);
+  return <>
+    <ImageCropper ref={cropper} src={src} aspectRatio={16 / 9}
+      locale="en" initialSelection={saved} />
+    <button type="button" onClick={() => {
+      const selection = cropper.current?.getSelection();
+      if (selection) onSave(selection);
+    }}>Save crop coordinates</button>
+  </>;
+}
+```
+
+Save the coordinates with the original image identity and aspect ratio. See the [English API guide](./docs/API.en.md#display-the-exact-crop-from-the-original) for displaying the exact crop without encoding a new image.
 
 ## Props and methods
 

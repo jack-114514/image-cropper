@@ -1,5 +1,7 @@
 # API 与接入说明
 
+[English](./API.en.md) · [返回 README](../README.md)
+
 ## 属性
 
 | 属性 | 类型 | 默认值 / 说明 |

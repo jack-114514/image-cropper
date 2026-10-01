@@ -41,15 +41,15 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
   const busyRef = useRef(false);
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<'' | 'failed' | 'resultError'>('');
   // Ref callback also prevents asynchronous completion from updating an old session.
   const assignRef = (instance: CropperRef | null) => { engine.current = instance; alive.current = instance !== null; };
   const ratio = shape === 'circle' ? 1 : aspectRatio;
   const validRatio = ratio === undefined || (Number.isFinite(ratio) && ratio > 0);
   const blocked = disabled || !ready || busy;
 
-  function report(error: unknown, fallback: string) {
-    const problem = error instanceof Error ? error : new Error(fallback);
+  function report(error: unknown, fallback: 'failed' | 'resultError') {
+    const problem = error instanceof Error ? error : new Error(text[fallback]);
     if (alive.current) setMessage(fallback);
     onError?.(problem);
   }
@@ -89,7 +89,7 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
     } catch (error) {
       // Invalid stored coordinates do not make a newly selected local file unusable.
       setReady(true);
-      report(error, text.resultError);
+      report(error, 'resultError');
     }
   }
 
@@ -101,7 +101,7 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
     try {
       const result = await getResult();
       if (alive.current) await onConfirm?.(result);
-    } catch (error) { if (alive.current) report(error, text.resultError); }
+    } catch (error) { if (alive.current) report(error, 'resultError'); }
     finally {
       busyRef.current = false;
       if (alive.current) setBusy(false);
@@ -124,7 +124,7 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
         imageRestriction={ImageRestriction.fillArea} crossOrigin="anonymous" checkOrientation
         disabled={disabled || busy} backgroundWrapperProps={{ moveImage: true, scaleImage: true, rotateImage: false }} transitions={false}
         onReady={onReady}
-        onError={() => { setReady(false); report(new Error(text.failed), text.failed); }}
+        onError={() => { setReady(false); report(new Error(text.failed), 'failed'); }}
         onChange={(instance) => {
           const rect = instance.getCoordinates();
           const image = instance.getImage();
@@ -141,7 +141,7 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
       <button type="button" disabled={blocked} onClick={() => move(0, 1)} aria-label={text.down}>↓</button>
       <button type="button" disabled={blocked} onClick={reset}>{text.reset}</button>
     </div>
-    {message && <p className="image-cropper__error" role="alert">{message}</p>}
+    {message && <p className="image-cropper__error" role="alert">{text[message]}</p>}
     {(onConfirm || onCancel) && <div className="image-cropper__actions">
       {onConfirm && <button type="button" className="image-cropper__confirm" disabled={blocked} onClick={() => void confirm()}>{busy ? text.exporting : text.confirm}</button>}
       {onCancel && <button type="button" disabled={busy} onClick={onCancel}>{text.cancel}</button>}
