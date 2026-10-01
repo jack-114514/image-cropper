@@ -13,12 +13,12 @@ function npm(args, cwd) {
 }
 npm(['pack'], root);
 for (const version of ['18.3.1', pkg.devDependencies.react]) {
-  const consumer = mkdtempSync(join(tmpdir(), 'into-cropper-consumer-'));
+  const consumer = mkdtempSync(join(tmpdir(), 'image-cropper-consumer-'));
   const tarball = `${pkg.name}-${pkg.version}.tgz`;
   copyFileSync(resolve(root, tarball), join(consumer, tarball));
   writeFileSync(join(consumer, 'package.json'), JSON.stringify({
     private: true, type: 'module', scripts: { build: 'tsc --noEmit && vite build', smoke: 'node smoke.mjs' },
-    dependencies: { 'into-image-cropper': `file:./${tarball}`, react: version, 'react-dom': version },
+    dependencies: { 'image-cropper': `file:./${tarball}`, react: version, 'react-dom': version },
     devDependencies: { vite: pkg.devDependencies.vite, typescript: pkg.devDependencies.typescript,
       '@types/react': pkg.devDependencies['@types/react'], '@types/react-dom': pkg.devDependencies['@types/react-dom'] },
   }, null, 2));
@@ -30,9 +30,9 @@ for (const version of ['18.3.1', pkg.devDependencies.react]) {
   writeFileSync(join(consumer, 'main.tsx'), `
 import { createElement, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ImageCropper } from 'into-image-cropper';
-import type { ImageCropperHandle, CropResult } from 'into-image-cropper';
-import 'into-image-cropper/style.css';
+import { ImageCropper } from 'image-cropper';
+import type { ImageCropperHandle, CropResult } from 'image-cropper';
+import 'image-cropper/style.css';
 function App() {
   const ref = useRef<ImageCropperHandle>(null);
   return <ImageCropper ref={ref} src="" locale="en" aspectRatio={16 / 9}
@@ -43,7 +43,7 @@ createRoot(document.getElementById('root')!).render(createElement(App));
   writeFileSync(join(consumer, 'smoke.mjs'), `
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
-import { ImageCropper, normalizeSelection } from 'into-image-cropper';
+import { ImageCropper, normalizeSelection } from 'image-cropper';
 const html = renderToString(createElement(ImageCropper, { src: '', locale: 'en' }));
 if (!html.includes('Choose an image first')) throw new Error('Independent consumer render failed.');
 if (normalizeSelection({left:0,top:0,width:100,height:100}).width !== 100) throw new Error('Helper export missing.');

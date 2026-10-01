@@ -136,7 +136,7 @@ export const SelectionCircleStencil: typeof CircleStencil = forwardRef<Component
 
   return <>
     <CircleStencil {...props} cropper={cropper} ref={ref} movable resizable={false} handlers={{}} lines={{}} />
-    {state?.coordinates && <svg className="into-cropper__circle-ring" style={{ left: ring.left, top: ring.top, width: ring.width, height: ring.height }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    {state?.coordinates && <svg className="image-cropper__circle-ring" style={{ left: ring.left, top: ring.top, width: ring.width, height: ring.height }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <circle cx="50" cy="50" r="48.5" fill="none" stroke="transparent" strokeWidth="3" pointerEvents="stroke" onPointerDown={(event) => {
         if (props.disabled) return;
         const coordinates = instance.getCoordinates();

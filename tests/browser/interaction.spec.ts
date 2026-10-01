@@ -6,7 +6,7 @@ test('circle resizes from its circumference', async ({ page }) => {
   await expect(page.getByRole('button', { name: '使用此取景' })).toBeEnabled();
   const coordinates = page.getByLabel('取景坐标');
   const initial = JSON.parse((await coordinates.textContent())!);
-  const ring = page.locator('.into-cropper__circle-ring');
+  const ring = page.locator('.image-cropper__circle-ring');
   await ring.scrollIntoViewIfNeeded();
   const rect = (await ring.boundingBox())!;
   const x = rect.x + rect.width * .985;
@@ -24,7 +24,7 @@ test('selection at the preview edge keeps panning until released', async ({ page
   const stencil = page.locator('.advanced-cropper-rectangle-stencil');
   await stencil.scrollIntoViewIfNeeded();
   const rect = (await stencil.boundingBox())!;
-  const stage = (await page.locator('.into-cropper__stage').boundingBox())!;
+  const stage = (await page.locator('.image-cropper__stage').boundingBox())!;
   const coordinates = page.getByLabel('取景坐标');
   await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2);
   await page.mouse.down();
@@ -48,5 +48,5 @@ test('JPEG export reports the actual output type', async ({ page }) => {
   await expect(page.getByAltText('裁剪结果')).toBeVisible();
   const download = page.waitForEvent('download');
   await page.getByRole('link', { name: '下载图片' }).click();
-  expect((await download).suggestedFilename()).toBe('into-crop.jpg');
+  expect((await download).suggestedFilename()).toBe('image-crop.jpg');
 });

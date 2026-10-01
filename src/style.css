@@ -1,19 +1,19 @@
-.into-cropper { --into-crop-accent: #165f53; --into-crop-text: #172d29; --into-crop-surface: #fff; --into-crop-border: #d5dfdb; color: var(--into-crop-text); background: var(--into-crop-surface); font: 14px/1.5 system-ui,sans-serif; width: 100%; min-width: 0; }
-.into-cropper * { box-sizing: border-box; }
-.into-cropper__label { margin: 0 0 8px; font-size: 19px; font-weight: 650; }
-.into-cropper__hint { margin: 0 0 16px; opacity: .78; font-size: 13px; }
-.into-cropper__stage { position: relative; height: clamp(260px,45vw,460px); width: 100%; overflow: hidden; border-radius: 12px; background: #14211f; touch-action: none; }
-.into-cropper__engine { width: 100%; height: 100%; }
-.into-cropper__engine .advanced-cropper__image { max-width: none; max-height: none; }
-.into-cropper__engine .advanced-cropper-simple-handler { opacity: 0; }
-.into-cropper__engine .advanced-cropper-simple-line { border-color: #fff; }
-.into-cropper__circle-ring { position: absolute; z-index: 4; overflow: visible; pointer-events: none; touch-action: none; }
-.into-cropper__circle-ring circle { cursor: nwse-resize; touch-action: none; }
-.into-cropper__placeholder,.into-cropper__loading { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; padding: 24px; pointer-events: none; }
-.into-cropper__tools,.into-cropper__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.into-cropper button { min-height: 42px; min-width: 42px; padding: 8px 14px; border: 1px solid var(--into-crop-border); border-radius: 8px; color: var(--into-crop-text); background: var(--into-crop-surface); font: inherit; cursor: pointer; }
-.into-cropper button:focus-visible { outline: 3px solid var(--into-crop-accent); outline-offset: 3px; }
-.into-cropper button:disabled { opacity: .45; cursor: default; }
-.into-cropper button.into-cropper__confirm { background: var(--into-crop-accent); color: #fff; border-color: var(--into-crop-accent); font-weight: 600; }
-.into-cropper__error { color: #a52323; font-size: 13px; margin: 12px 0 0; }
-@media (max-width: 480px) { .into-cropper__stage { height: 300px; } .into-cropper button { padding: 8px 11px; } }
+.image-cropper { --image-crop-accent: #165f53; --image-crop-text: #172d29; --image-crop-surface: #fff; --image-crop-border: #d5dfdb; color: var(--image-crop-text); background: var(--image-crop-surface); font: 14px/1.5 system-ui,sans-serif; width: 100%; min-width: 0; }
+.image-cropper * { box-sizing: border-box; }
+.image-cropper__label { margin: 0 0 8px; font-size: 19px; font-weight: 650; }
+.image-cropper__hint { margin: 0 0 16px; opacity: .78; font-size: 13px; }
+.image-cropper__stage { position: relative; height: clamp(260px,45vw,460px); width: 100%; overflow: hidden; border-radius: 12px; background: #14211f; touch-action: none; }
+.image-cropper__engine { width: 100%; height: 100%; }
+.image-cropper__engine .advanced-cropper__image { max-width: none; max-height: none; }
+.image-cropper__engine .advanced-cropper-simple-handler { opacity: 0; }
+.image-cropper__engine .advanced-cropper-simple-line { border-color: #fff; }
+.image-cropper__circle-ring { position: absolute; z-index: 4; overflow: visible; pointer-events: none; touch-action: none; }
+.image-cropper__circle-ring circle { cursor: nwse-resize; touch-action: none; }
+.image-cropper__placeholder,.image-cropper__loading { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; padding: 24px; pointer-events: none; }
+.image-cropper__tools,.image-cropper__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.image-cropper button { min-height: 42px; min-width: 42px; padding: 8px 14px; border: 1px solid var(--image-crop-border); border-radius: 8px; color: var(--image-crop-text); background: var(--image-crop-surface); font: inherit; cursor: pointer; }
+.image-cropper button:focus-visible { outline: 3px solid var(--image-crop-accent); outline-offset: 3px; }
+.image-cropper button:disabled { opacity: .45; cursor: default; }
+.image-cropper button.image-cropper__confirm { background: var(--image-crop-accent); color: #fff; border-color: var(--image-crop-accent); font-weight: 600; }
+.image-cropper__error { color: #a52323; font-size: 13px; margin: 12px 0 0; }
+@media (max-width: 480px) { .image-cropper__stage { height: 300px; } .image-cropper button { padding: 8px 11px; } }

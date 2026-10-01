@@ -114,11 +114,11 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
     if (area) engine.current?.moveImage(x * area.width * 0.03, y * area.height * 0.03);
   }
 
-  return <section className={`into-cropper ${className}`} aria-labelledby={`${id}-label`} aria-busy={busy}>
-    <h2 id={`${id}-label`} className="into-cropper__label">{label ?? text.label}</h2>
-    <p id={`${id}-hint`} className="into-cropper__hint">{text.hint}</p>
-    <div className="into-cropper__stage" aria-describedby={`${id}-hint`}>
-      {src && validRatio ? <Cropper ref={assignRef} src={src} className="into-cropper__engine"
+  return <section className={`image-cropper ${className}`} aria-labelledby={`${id}-label`} aria-busy={busy}>
+    <h2 id={`${id}-label`} className="image-cropper__label">{label ?? text.label}</h2>
+    <p id={`${id}-hint`} className="image-cropper__hint">{text.hint}</p>
+    <div className="image-cropper__stage" aria-describedby={`${id}-hint`}>
+      {src && validRatio ? <Cropper ref={assignRef} src={src} className="image-cropper__engine"
         stencilComponent={shape === 'circle' ? SelectionCircleStencil : SelectionRectangleStencil}
         stencilProps={{ aspectRatio: ratio, movable: true, resizable: true, disabled: disabled || busy }}
         imageRestriction={ImageRestriction.fillArea} crossOrigin="anonymous" checkOrientation
@@ -129,10 +129,10 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
           const rect = instance.getCoordinates();
           const image = instance.getImage();
           if (rect && image) onChange?.(pixelsToSelection(rect, image.width, image.height));
-        }} /> : <p className="into-cropper__placeholder">{src ? 'aspectRatio must be greater than zero.' : text.empty}</p>}
-      {src && validRatio && !ready && !message && <span className="into-cropper__loading" role="status">{text.loading}</span>}
+        }} /> : <p className="image-cropper__placeholder">{src ? 'aspectRatio must be greater than zero.' : text.empty}</p>}
+      {src && validRatio && !ready && !message && <span className="image-cropper__loading" role="status">{text.loading}</span>}
     </div>
-    <div className="into-cropper__tools" role="group" aria-label={label ?? text.label}>
+    <div className="image-cropper__tools" role="group" aria-label={label ?? text.label}>
       <button type="button" disabled={blocked} onClick={() => engine.current?.zoomImage(1.15)}>{text.zoomIn}</button>
       <button type="button" disabled={blocked} onClick={() => engine.current?.zoomImage(1 / 1.15)}>{text.zoomOut}</button>
       <button type="button" disabled={blocked} onClick={() => move(-1, 0)} aria-label={text.left}>←</button>
@@ -141,9 +141,9 @@ const CropSession = forwardRef<ImageCropperHandle, ImageCropperProps>(function C
       <button type="button" disabled={blocked} onClick={() => move(0, 1)} aria-label={text.down}>↓</button>
       <button type="button" disabled={blocked} onClick={reset}>{text.reset}</button>
     </div>
-    {message && <p className="into-cropper__error" role="alert">{message}</p>}
-    {(onConfirm || onCancel) && <div className="into-cropper__actions">
-      {onConfirm && <button type="button" className="into-cropper__confirm" disabled={blocked} onClick={() => void confirm()}>{busy ? text.exporting : text.confirm}</button>}
+    {message && <p className="image-cropper__error" role="alert">{message}</p>}
+    {(onConfirm || onCancel) && <div className="image-cropper__actions">
+      {onConfirm && <button type="button" className="image-cropper__confirm" disabled={blocked} onClick={() => void confirm()}>{busy ? text.exporting : text.confirm}</button>}
       {onCancel && <button type="button" disabled={busy} onClick={onCancel}>{text.cancel}</button>}
     </div>}
   </section>;

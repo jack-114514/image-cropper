@@ -16,7 +16,7 @@ test('exports actual square pixels and downloads an image', async ({ page }) => 
   expect(size[0]).toBe(size[1]);
   const download = page.waitForEvent('download');
   await page.getByRole('link', { name: '下载图片' }).click();
-  expect((await download).suggestedFilename()).toBe('into-crop.webp');
+  expect((await download).suggestedFilename()).toBe('image-crop.webp');
   expect(errors).toEqual([]);
 });
 
@@ -34,7 +34,7 @@ test('transparent circle produces PNG with transparent corners', async ({ page }
   expect(alpha).toEqual([0, 255]);
   const download = page.waitForEvent('download');
   await page.getByRole('link', { name: '下载图片' }).click();
-  expect((await download).suggestedFilename()).toBe('into-crop.png');
+  expect((await download).suggestedFilename()).toBe('image-crop.png');
 });
 
 test('saved selection restores the same crop after zooming', async ({ page }) => {

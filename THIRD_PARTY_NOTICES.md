@@ -1,6 +1,6 @@
 # Third-party notices
 
-INTO Image Cropper is an independent integration component for website image workflows. Its crop engine is **react-advanced-cropper**, by Norserium; it does not claim authorship of that engine.
+Image Cropper is an independent integration component for website image workflows. Its crop engine is **react-advanced-cropper**, by Norserium; it does not claim authorship of that engine.
 
 - react-advanced-cropper 0.20.1: MIT, https://github.com/advanced-cropper/react-advanced-cropper
 - advanced-cropper (transitive crop engine): MIT, https://github.com/advanced-cropper/advanced-cropper

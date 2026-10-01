@@ -67,14 +67,14 @@ const frameAspect = (IW * crop.width) / (IH * crop.height);
 
 ```css
 .my-editor {
-  --into-crop-accent: #6948d2;
-  --into-crop-text: #f4f4f5;
-  --into-crop-surface: #202427;
-  --into-crop-border: #46504d;
+  --image-crop-accent: #6948d2;
+  --image-crop-text: #f4f4f5;
+  --image-crop-surface: #202427;
+  --image-crop-border: #46504d;
 }
 ```
 
-传入 `className="my-editor"`。组件 CSS 使用 `into-cropper` 前缀，并包含引擎 CSS，不要求网站具有任何全局样式。
+传入 `className="my-editor"`。组件 CSS 使用 `image-cropper` 前缀，并包含引擎 CSS，不要求网站具有任何全局样式。
 
 ## 常见问题
 

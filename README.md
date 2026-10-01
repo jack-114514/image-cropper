@@ -1,10 +1,10 @@
-# INTO Image Cropper
+# Image Cropper
 
 面向网站头像、封面和背景的独立 React 图片裁剪组件。
 
 [English](./README.en.md) · [API 与常见问题](./docs/API.md) · [更新日志](./CHANGELOG.md) · [MIT](./LICENSE)
 
-**项目状态：0.1.0，独立源码与可安装版本包。尚未发布到 npm。** 可以直接安装 GitHub Release 中的 tarball，不要求 npm 上存在同名包。
+**项目状态：0.1.1，独立源码与可安装版本包。尚未发布到 npm。** 可以直接安装 GitHub Release 中的 tarball，不要求 npm 上存在同名包。
 
 ![独立裁剪演示](./docs/demo.png)
 
@@ -18,15 +18,15 @@
 - 只获取原图百分比取景坐标，保存后恢复选框；这种方式不需要裁掉或重新编码原图。
 - TypeScript 类型、中英文组件文字、CSS 变量主题、可运行演示和测试。
 
-项目有自己的依赖、构建、演示和版本，不需要 INTO 网站、后台、数据库或服务器。第一版是 **React 18/19 组件**，适用于 Vite、Next.js 等 React 项目；不是 Vue 或普通 HTML 的直接嵌入库。
+项目有自己的依赖、构建、演示和版本，不需要 原有网站、后台、数据库或服务器。第一版是 **React 18/19 组件**，适用于 Vite、Next.js 等 React 项目；不是 Vue 或普通 HTML 的直接嵌入库。
 
 ## 先运行演示
 
 需要 Node.js >=22.13.0。克隆并启动：
 
 ```bash
-git clone https://github.com/jack-114514/into-image-cropper.git
-cd into-image-cropper
+git clone https://github.com/jack-114514/image-cropper.git
+cd image-cropper
 npm ci
 npm run dev
 ```
@@ -40,7 +40,7 @@ npm run dev
 在你的网站目录直接安装已构建的版本包：
 
 ```bash
-npm install https://github.com/jack-114514/into-image-cropper/releases/download/v0.1.0/into-image-cropper-0.1.0.tgz
+npm install https://github.com/jack-114514/image-cropper/releases/download/v0.1.1/image-cropper-0.1.1.tgz
 ```
 
 或者先构建源码，再安装本地文件。
@@ -56,18 +56,18 @@ npm pack
 在你的网站目录安装生成的文件（替换为实际路径）：
 
 ```bash
-npm install /path/to/into-image-cropper-0.1.0.tgz
+npm install /path/to/image-cropper-0.1.1.tgz
 ```
 
-Windows 也可以使用带引号的绝对路径：`npm install "C:/path/to/into-image-cropper-0.1.0.tgz"`。
+Windows 也可以使用带引号的绝对路径：`npm install "C:/path/to/image-cropper-0.1.1.tgz"`。
 
 ```tsx
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ImageCropper } from 'into-image-cropper';
-import type { CropResult } from 'into-image-cropper';
-import 'into-image-cropper/style.css';
+import { ImageCropper } from 'image-cropper';
+import type { CropResult } from 'image-cropper';
+import 'image-cropper/style.css';
 
 export default function AvatarEditor() {
   const [src, setSrc] = useState('');
@@ -104,9 +104,9 @@ export default function AvatarEditor() {
 
 ```tsx
 import { useRef } from 'react';
-import { ImageCropper } from 'into-image-cropper';
-import type { CropSelection, ImageCropperHandle } from 'into-image-cropper';
-import 'into-image-cropper/style.css';
+import { ImageCropper } from 'image-cropper';
+import type { CropSelection, ImageCropperHandle } from 'image-cropper';
+import 'image-cropper/style.css';
 
 export function CoverEditor({ src, saved, onSave }: {
   src: string;

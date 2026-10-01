@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 — 2026-10-01
+
+- Neutral project name, package identity, styles and standalone demo branding.
+- Public distribution as Image Cropper, with independent installation and documentation.
+
 ## 0.1.0 — 2026-10-01
 
 - Independent React/TypeScript image cropper package with no website or backend dependency.

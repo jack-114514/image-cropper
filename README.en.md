@@ -1,10 +1,10 @@
-# INTO Image Cropper
+# Image Cropper
 
 An independent React component for avatar, cover and website background cropping.
 
 [中文](./README.md) · [API (Chinese)](./docs/API.md) · [MIT](./LICENSE)
 
-Version 0.1.0 provides standalone source and an installable release tarball. It is **not published to npm yet**. It has no dependency on the INTO website, its backend or database.
+Version 0.1.1 provides standalone source and an installable release tarball. It is **not published to npm yet**. It has no dependency on any existing website, backend or database.
 
 ![Standalone cropper demo](./docs/demo.png)
 
@@ -13,8 +13,8 @@ Version 0.1.0 provides standalone source and an installable release tarball. It 
 Node.js >=22.13.0 is required for development. Obtain this repository's source, then run:
 
 ```bash
-git clone https://github.com/jack-114514/into-image-cropper.git
-cd into-image-cropper
+git clone https://github.com/jack-114514/image-cropper.git
+cd image-cropper
 npm ci
 npm run dev
 ```
@@ -26,7 +26,7 @@ The demo supports local uploads, square covers, circular avatars, landscape/port
 Install the prebuilt GitHub Release package directly:
 
 ```bash
-npm install https://github.com/jack-114514/into-image-cropper/releases/download/v0.1.0/into-image-cropper-0.1.0.tgz
+npm install https://github.com/jack-114514/image-cropper/releases/download/v0.1.1/image-cropper-0.1.1.tgz
 ```
 
 Or build and install from source:
@@ -42,15 +42,15 @@ npm pack
 Then install the resulting tarball in your website project:
 
 ```bash
-npm install /path/to/into-image-cropper-0.1.0.tgz
+npm install /path/to/image-cropper-0.1.1.tgz
 ```
 
 React 18.2+ and React 19 are supported peers. Vue and plain HTML need a separate integration. The package is ESM and ships TypeScript declarations.
 
 ```tsx
 'use client';
-import { ImageCropper } from 'into-image-cropper';
-import 'into-image-cropper/style.css';
+import { ImageCropper } from 'image-cropper';
+import 'image-cropper/style.css';
 
 // src can be a local URL.createObjectURL(file) or a CORS-enabled image URL.
 <ImageCropper src={src} shape="circle" locale="en"
@@ -96,7 +96,7 @@ With `ref: ImageCropperHandle`, call `getSelection(): CropSelection | null`, `ge
 
 ## Theme and limitations
 
-Override `--into-crop-accent`, `--into-crop-text`, `--into-crop-surface` and `--into-crop-border` on `.into-cropper`. Dragging, edge resizing, wheel/pinch zoom and keyboard-operable controls are available. Full keyboard-only stencil resizing and comprehensive assistive-technology certification are not claimed.
+Override `--image-crop-accent`, `--image-crop-text`, `--image-crop-surface` and `--image-crop-border` on `.image-cropper`. Dragging, edge resizing, wheel/pinch zoom and keyboard-operable controls are available. Full keyboard-only stencil resizing and comprehensive assistive-technology certification are not claimed.
 
 Remote sources require CORS. GIF output is a static frame. Canvas encoding does not retain original metadata. Use the returned MIME type because WebP can fall back to PNG. Large originals can still consume substantial memory. The component does not provide authentication, storage, batching or rotation.
 

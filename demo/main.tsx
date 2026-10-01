@@ -58,7 +58,7 @@ function App() {
   }
 
   return <main className="demo">
-    <header className="demo__nav"><a href="#" className="demo__brand"><span>in.</span> INTO Image Cropper</a><span className="demo__version">v0.1.0 · MIT</span></header>
+    <header className="demo__nav"><a href="#" className="demo__brand"><span>ic.</span> Image Cropper</a><span className="demo__version">v0.1.1 · MIT</span></header>
     <section className="demo__intro"><p className="demo__eyebrow">A BETTER FRAME FOR YOUR IMAGES</p><h1>好照片，从选对画面开始。</h1><p>头像、封面、网站背景。选一张图片，调整取景，把结果带走。</p></section>
     <div className="demo__workspace">
       <section className="demo__editor">
@@ -78,7 +78,7 @@ function App() {
           {mode.shape === 'circle' && <label className="demo__checkbox"><input type="checkbox" checked={transparent} onChange={(event) => setTransparent(event.target.checked)} /> 透明圆形 PNG</label>}
           <div className="demo__result">{resultUrl ? <img src={resultUrl} alt="裁剪结果" /> : <p>确认取景后<br/>在这里查看导出图片</p>}</div>
           {result && <p className="demo__result-info">{result.width} × {result.height} px · {result.mimeType.replace('image/', '').toUpperCase()} · {(result.blob.size / 1024).toFixed(1)} KB</p>}
-          {resultUrl && result && <a className="demo__download" href={resultUrl} download={`into-crop.${result.mimeType === 'image/jpeg' ? 'jpg' : result.mimeType.split('/')[1]}`}>下载图片 ↓</a>}
+          {resultUrl && result && <a className="demo__download" href={resultUrl} download={`image-crop.${result.mimeType === 'image/jpeg' ? 'jpg' : result.mimeType.split('/')[1]}`}>下载图片 ↓</a>}
         </section>
         <section className="demo__panel"><p className="demo__section-label">03 / 保留原图的取景</p><p className="demo__note">只保存选框的百分比坐标，原图可以继续用于大图展示。</p>
           <pre aria-label="取景坐标">{selection ? JSON.stringify(selection, null, 2) : '等待图片载入…'}</pre>
